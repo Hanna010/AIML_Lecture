@@ -158,7 +158,7 @@ pytz==2023.3
 pytz-deprecation-shim==0.1.0.post0
 pywin32==306
 pywinpty==2.0.14
-PyYAML==6.0.2
+PyYAML==6.0
 pyzmq==26.0.2
 referencing==0.35.1
 regex==2023.10.3
