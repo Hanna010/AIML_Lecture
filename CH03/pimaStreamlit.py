@@ -50,6 +50,7 @@ if uploaded_file is not None:
             options= list(X.columns),
             default= list(X.columns)
         )
+
         if selected_features:
             X_train_selected = X_train[selected_features]
             X_test_selected = X_test[selected_features]
@@ -58,6 +59,7 @@ if uploaded_file is not None:
                 "Select Classifier",
                 ["Logistic Regression", "Random Forest", "Decision Tree"]
             )
+
             if classifier_name == "Logistic Regression":
                 model = LogisticRegression()
             elif classifier_name == "Random Forest":
@@ -89,7 +91,7 @@ if uploaded_file is not None:
             plt.figure(figsize=(10,6))
             plt.plot(threshold, precision[:-1], label="Precision", marker='.')
             plt.plot(threshold, recall[:-1], label="Racll", marker='.')
-            plt.xlabel("threshold");plt.ylabel("Precision / Recall")
+            plt.xlabel("Threshold");plt.ylabel("Precision / Recall")
             plt.title("Precision and Recall vs Threshold")
             plt.legend();plt.grid()
             start, end = plt.xlim()
@@ -101,7 +103,7 @@ if uploaded_file is not None:
             roc_auc = auc(fpr, tpr)
 
             plt.figure(figsize=(8,6))
-            plt.plot(fpr, tpr,marker='.',label=f"AUC : {roc_auc:.2f}")
+            plt.plot(fpr, tpr,marker='.', label=f"AUC : {roc_auc:.2f}")
             plt.xlabel("False Positive Rate");plt.ylabel("True Positive Rate")
             plt.legend();plt.grid()
             st.pyplot(plt)    
@@ -114,6 +116,11 @@ if uploaded_file is not None:
                 value = st.slider(f"Enter value for {feature}",
                                   float(X[feature].min()),
                                   float(X[feature].max()))
+                new_data.append(value)
+            if data[feature].dtype == "int64":
+                value = st.slider(f"Enter value for {feature}",
+                                  float(X[feature].min()),
+                                  float(X[feature].max()), step=1)
                 new_data.append(value)
 
         if st.button("Predict"):
