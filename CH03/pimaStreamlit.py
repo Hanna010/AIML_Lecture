@@ -117,10 +117,10 @@ if uploaded_file is not None:
                                   float(X[feature].min()),
                                   float(X[feature].max()))
                 new_data.append(value)
-            if data[feature].dtype == "int64":
+            elif data[feature].dtype == "int64":
                 value = st.slider(f"Enter value for {feature}",
-                                  float(X[feature].min()),
-                                  float(X[feature].max()), step=1)
+                                  int(X[feature].min()),
+                                  int(X[feature].max()), step=1)
                 new_data.append(value)
 
         if st.button("Predict"):
